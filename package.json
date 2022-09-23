@@ -1,14 +1,15 @@
 {
   "name": "react-native-context",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "entry.tsx",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "env BROWSER=chrome expo start --web"
   },
   "dependencies": {
+    "@expo/webpack-config": "^0.17.0",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
