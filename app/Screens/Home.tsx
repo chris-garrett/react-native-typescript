@@ -19,7 +19,7 @@ export default function Home() {
           navigation.push('Stackable')
         }}
         style={styles.button}>
-        <Text style={styles.button.text}>Home</Text>
+        <Text style={styles.button.text} selectable={false}>Home</Text>
       </Pressable>
     </View>
   );

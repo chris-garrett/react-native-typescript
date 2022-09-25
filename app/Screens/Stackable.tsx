@@ -32,7 +32,7 @@ export default function Stackable() {
       <Pressable
         onPress={stateUpdate}
         style={styles.button}>
-        <Text style={styles.button.text}>{buttonLabel}</Text>
+        <Text style={styles.button.text} selectable={false}>{buttonLabel}</Text>
       </Pressable>
     </View>
   );
