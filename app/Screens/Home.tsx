@@ -1,13 +1,25 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../theme';
 
-export default function Home({navigation, route}: { navigation: any, route: any }) {
-  const stackCount = 0;
+import {useStackStore} from "../Stores/StackStore";
+import {useNavigation, useRoute} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+
+export default function Home() {
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  const stackStore = useStackStore();
+
+  console.log('Home', stackStore.counter);
+
   return (
     <View style={styles.container}>
       <Text style={styles.message}>I'm a teapot at Home</Text>
       <Pressable
-        onPress={() => navigation.navigate('Stackable', {stackCount})}
+        onPress={(e) => {
+          e.preventDefault();
+          stackStore.increase();
+          navigation.push('Stackable')
+        }}
         style={styles.button}>
         <Text style={styles.button.text}>Home</Text>
       </Pressable>

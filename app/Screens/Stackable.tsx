@@ -1,24 +1,38 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {StackActions} from '@react-navigation/native';
 import {Colors} from "../theme";
+import {useStackStore} from "../Stores/StackStore";
+import {useNavigation} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
 
-export default function Stackable({navigation, route}: { navigation: any, route: any }) {
-  const stackCount = route.params.stackCount + 1;
+export default function Stackable() {
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  const stackStore = useStackStore();
+  const maxDepth = 2;
+
+  console.log('Stackable', stackStore.counter);
+
+  const stackCount: number = stackStore.counter;
   let stackMessage = `I've been stacked ${stackCount} times`;
-  let navigationFunction = () => navigation.navigate("Stackable", {stackCount});
   let buttonLabel = "Stack";
+  let stateUpdate = () => {
+    stackStore.increase()
+    navigation.push('Stackable')
+  };
 
-  if (stackCount > 4) {
+  if (stackCount > maxDepth) {
     stackMessage += " and im not going further";
-    navigationFunction = () => navigation.dispatch(StackActions.pop(1));
     buttonLabel = "Go Home";
+    stateUpdate = () => {
+      stackStore.reset();
+      navigation.navigate('Home')
+    }
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.message}>{stackMessage}</Text>
       <Pressable
-        onPress={() => navigationFunction()}
+        onPress={stateUpdate}
         style={styles.button}>
         <Text style={styles.button.text}>{buttonLabel}</Text>
       </Pressable>
