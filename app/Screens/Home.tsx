@@ -9,8 +9,6 @@ export default function Home() {
   const navigation = useNavigation<StackNavigationProp<any>>();
   const stackStore = useStackStore();
 
-  console.log('Home', stackStore.counter);
-
   return (
     <View style={styles.container}>
       <Text style={styles.message}>I'm a teapot at Home</Text>

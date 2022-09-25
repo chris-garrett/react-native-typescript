@@ -25,8 +25,6 @@ function App() {
       {
         flex: 1,
         backgroundColor: Colors.grosse4,
-        borderWidth: 2,
-        borderColor: 'pink',
       }}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator screenOptions={{headerShown: false,}}>

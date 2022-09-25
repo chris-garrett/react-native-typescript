@@ -9,8 +9,6 @@ export default function Stackable() {
   const stackStore = useStackStore();
   const maxDepth = 2;
 
-  console.log('Stackable', stackStore.counter);
-
   const stackCount: number = stackStore.counter;
   let stackMessage = `I've been stacked ${stackCount} times`;
   let buttonLabel = "Stack";
